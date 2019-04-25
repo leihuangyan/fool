@@ -1,0 +1,35 @@
+server:
+  port: 8082
+
+spring:
+    profiles:
+        active: dev
+    thymeleaf:
+            prefix: classpath:/templates/
+            check-template-location: true
+            cache: false
+            suffix: .html
+            encoding: UTF-8
+            mode: HTML
+    aop:
+      auto: true
+      proxy-target-class: true
+
+    servlet:
+          multipart:
+            max-file-size: 10MB
+            max-request-size: 100MB
+    mvc:
+      favicon:
+        enabled: false
+
+logging:
+  level:
+      com.ls.ggtt: debug
+
+
+
+
+
+
+

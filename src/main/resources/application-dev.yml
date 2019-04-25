@@ -1,0 +1,52 @@
+spring:
+  datasource:
+      name: ggtt
+      type: com.alibaba.druid.pool.DruidDataSource
+      #druid相关配置
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://47.101.162.124:3306/makeforyou?useUnicode=true&characterEncoding=UTF-8
+      username: lhy
+      password: 1223
+      #  连接池的配置信息
+      #配置初始化大小/最小/最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# swagger ui
+swagger:
+  enable: true
+
+ftp:
+  host: 47.101.162.124
+  port: 21
+  ftpPort: 8000
+  username: lhy
+  password: 1223
+  rootPath: "/home/www"
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+   # 支持统配符 * 或者 ; 分割
+  typeEnumsPackage: com.lhy.fool.util.enums
+  configuration:
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+

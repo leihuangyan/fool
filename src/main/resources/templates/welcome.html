@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+        <link rel="stylesheet" th:href="@{/css/main.css}"  media="all">
+    </head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <a class="layui-logo">
+            <span class="layui-logo-mini">FOOL</span>
+            <span class="layui-logo-lg">FOOL</span>
+        </a>
+        <a class="side-toggle layui-layout-left" href="#">
+            <i class="layui-icon layui-icon-shrink-right"></i>
+            <i class="layui-icon layui-icon-spread-left"></i>
+        </a>
+
+        <!--顶部右边-->
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                <a href="javascript:;"  class="ggtt-screen-full" layadmin-event="fullscreen">
+                    <i class="layui-icon layui-icon-screen-full"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://www.makeforyou.online:8000/images/mz.jpg" class="layui-nav-img">
+                    admin
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+
+
+        </ul>
+    </div>
+
+     <!--侧边-->
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+
+            <ul class="layui-nav layui-nav-tree" lay-filter="layui-nav-side">
+
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"  lay-url="/Htt/menu/main"><i
+                                class="layui-icon layui-icon-home"></i><span class="layui-nav-title">主页</span></a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" lay-url="#">
+                            <i class="fa fa-user-o"></i>
+                            <span class="layui-nav-title">选项1</span>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" lay-url="/Htt/menu/Item1">
+                                    <span  class="layui-nav-title">Item1</span>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" lay-url="/Htt/menu/Item2">
+                                    <span  class="layui-nav-title">Item2</span>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" lay-url="/menu/Item3">
+                                    <span  class="layui-nav-title">Item3</span>
+                                </a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+    </div>
+
+    <!-- 主体区域 -->
+    <div class="layui-body layui-tab layui-tab-brief" lay-allowclose="true" lay-filter="iframe-tabs">
+        <!-- 标签栏 -->
+        <ul class="layui-tab-title"></ul>
+        <!-- 内容区域 -->
+        <div class="layui-tab-content"></div>
+    </div>
+
+
+    <div class="layui-footer">
+        底部固定区域
+    </div>
+</div>
+
+<script th:replace="/common/template :: script"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+</script>
+
+</body>
+</html>

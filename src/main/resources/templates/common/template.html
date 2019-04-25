@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header(title, link, style)">
+    <th:block th:if="${title == null}">
+        <title>Fool</title>
+    </th:block>
+    <th:block th:if="${title != null}">
+        <title th:text="${title}"></title>
+    </th:block>
+    <meta charset="utf-8">
+    <!--<link rel="shortcut icon" th:href="@{/static/favicon.ico}" type="image/x-icon">-->
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <!-- 引入css -->
+    <link rel="stylesheet" th:href="@{/css/plugins/font-awesome-4.7.0/css/font-awesome.min.css}"  media="all">
+    <link rel="stylesheet" th:href="@{/layui-v2.4.5/css/layui.css}"  media="all">
+    <th:block th:if="${link != null}">
+        <th:block th:replace="${link}"></th:block>
+    </th:block>
+    <th:block th:if="${style != null}">
+        <th:block th:replace="${style}"></th:block>
+    </th:block>
+</head>
+<body>
+    <th:block th:fragment="script">
+        <script th:src="@{/layui-v2.4.5/layui.js}" charset="utf-8"></script>
+        <script th:src="@{/main.js}" charset="utf-8"></script>
+    </th:block>
+
+</body>
+</html>
