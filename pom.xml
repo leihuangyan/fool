@@ -48,7 +48,7 @@
         </dependency>
 
 
-        <!-- mybatisplus集成 -->
+        <!-- mybatis-plus集成 -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
