@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhy.fool.flr.mapper.FlrStatementMapper">
+
+    <!--查询单个对账单以及他的所有项 ————> 对应的数据接受模型 -->
+    <resultMap id="SELECT_STATEMENT_BY_ID" type="com.lhy.fool.flr.entity.FlrStatement">
+        <id column="FID" property="fid" jdbcType="VARCHAR"></id>
+        <result column="SUBSIDIARY" property="subsidiary" jdbcType="VARCHAR"></result>
+        <result column="PAYMENTDAY" property="paymentday" jdbcType="INTEGER"></result>
+        <result column="BUDGETITEM" property="budgetitem" jdbcType="VARCHAR"></result>
+        <result column="CALLTOTALAMOUNT" property="calltotalamount" jdbcType="DOUBLE"></result>
+        <result column="INSTALLTOTALAMOUNT" property="installtotalamount" jdbcType="DOUBLE"></result>
+        <result column="OTHERTOTALAMOUNT" property="othertotalamount" jdbcType="DOUBLE"></result>
+        <result column="REIMBURSETOTALAMOUNT" property="reimbursetotalamount" jdbcType="DOUBLE"></result>
+        <result column="BillSTATUS" property="billstatus" jdbcType="VARCHAR"></result>
+        <result column="REIMBURSSTATUS" property="reimbursstatus" jdbcType="INTEGER"></result>
+        <result column="WITHHOLDINGSTATUS" property="withholdingstatus" jdbcType="INTEGER"></result>
+        <result column="ISREIMBURSEOVERTIME" property="isreimburseovertime" jdbcType="INTEGER"></result>
+        <result column="FINANCIALDEPARTMENT" property="financialdepartment" jdbcType="VARCHAR"></result>
+        <result column="WORKFLOWNAME" property="workflowname" jdbcType="VARCHAR"></result>
+        <result column="CREATEUSERCODE" property="createusercode" jdbcType="VARCHAR"></result>
+        <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP"></result>
+        <result column="MODIFYUSERCODE" property="modifyusercode" jdbcType="VARCHAR"></result>
+        <result column="MODIFYTIME" property="modifytime" jdbcType="TIMESTAMP"></result>
+        <result column="LOGICSTATE" property="logicstate" jdbcType="INTEGER"></result>
+        <result column="INVOICETITLE" property="invoicetitle" jdbcType="VARCHAR"></result>
+        <collection property="items" ofType="com.lhy.fool.flr.entity.FlrStatementitem">
+            <id column="SID" property="fid" jdbcType="VARCHAR"></id>
+            <result column="STATEMENTNUM" property="statementnum" jdbcType="VARCHAR"></result>
+            <result column="WITHHOLDINGNUM" property="withholdingnum" jdbcType="VARCHAR"></result>
+            <result column="DEPARTMENT" property="department" jdbcType="VARCHAR"></result>
+            <result column="COSTCENTER" property="costcenter" jdbcType="VARCHAR"></result>
+            <result column="OUTSIDELINENUM" property="outsidelinenum" jdbcType="VARCHAR"></result>
+            <result column="TOTALCOST" property="totalcost" jdbcType="DOUBLE"></result>
+            <result column="LINECHARGES" property="linecharges" jdbcType="DOUBLE"></result>
+            <result column="NUMCHARGES" property="numcharges" jdbcType="DOUBLE"></result>
+            <result column="AMORTIZATIONAMOUNT" property="amortizationamount" jdbcType="DOUBLE"></result>
+            <result column="OTHEREXPENSES" property="otherexpenses" jdbcType="DOUBLE"></result>
+            <result column="GAP" property="gap" jdbcType="DOUBLE"></result>
+            <result column="REMARK" property="remark" jdbcType="VARCHAR"></result>
+            <result column="CREATEUSERCODE" property="createusercode" jdbcType="VARCHAR"></result>
+            <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP"></result>
+            <result column="MODIFYUSERCODE" property="modifyusercode" jdbcType="VARCHAR"></result>
+            <result column="MODIFYTIME" property="modifytime" jdbcType="TIMESTAMP"></result>
+            <result column="LOGICSTATE" property="logicstate" jdbcType="INTEGER"></result>
+        </collection>
+
+    </resultMap>
+
+    <!-- 设置为逻辑删除状态-->
+    <sql id="SET_LOGIC_DEL">LOGICSTATE = 2</sql>
+    <!-- 取消逻辑删除状态-->
+    <sql id="UN_SET_LOGIC_ADD">LOGICSTATE = 1 </sql>
+
+    <!--未删除 对账单（逻辑）-->
+    <sql id="LOG_STATUS">and S.LOGICSTATE = 1</sql>
+    <!--未删除 对账单项（逻辑）-->
+    <sql id="LOG_STATUS_JOIN">and SI.LOGICSTATE = 1</sql>
+
+    <!-- 对账单 -->
+    <sql id="TABLE_S">DEPPON2011.T_FLR_STATEMENT S</sql>
+    <!--对账单项-->
+    <sql id="TABLE_SI">DEPPON2011.T_FLR_STATEMENTITEM SI</sql>
+
+    <!-- 通用查询结果列 -->
+    <sql id="BASE_COLUMN_LIST">
+        FID, SUBSIDIARY, PAYMENTDAY, BUDGETITEM, CALLTOTALAMOUNT,
+        INSTALLTOTALAMOUNT, OTHERTOTALAMOUNT, REIMBURSETOTALAMOUNT, BillSTATUS,
+        REIMBURSSTATUS, WITHHOLDINGSTATUS, ISREIMBURSEOVERTIME, FINANCIALDEPARTMENT, WORKFLOWNAME,
+        CREATEUSERCODE, CREATETIME, MODIFYUSERCODE, MODIFYTIME, LOGICSTATE,
+        INVOICETITLE
+    </sql>
+    <!--插入一条数据，并验证空-->
+    <sql id="INSERT_COLUMN_VALUE_VERIFY_NULL">
+        #{fid},
+        <choose>
+            <when test="subsidiary != null ">#{subsidiary}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="paymentday != null ">#{paymentday}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="budgetitem != null ">#{budgetitem}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="calltotalamount != null ">#{calltotalamount}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="installtotalamount != null ">#{installtotalamount}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="othertotalamount != null ">#{othertotalamount}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="reimbursetotalamount != null ">#{reimbursetotalamount}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="billstatus != null ">#{billstatus}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="reimbursstatus != null ">#{reimbursstatus}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="withholdingstatus != null ">#{withholdingstatus}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="isreimburseovertime != null ">#{isreimburseovertime}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="financialdepartment != null ">#{financialdepartment}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="workflowname != null ">#{workflowname}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="createusercode != null ">#{createusercode}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="createtime != null ">#{createtime}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="modifyusercode != null ">#{modifyusercode}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="modifytime != null ">#{modifytime}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="logicstate != null ">#{logicstate}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="invoicetitle != null ">#{invoicetitle}</when>
+            <otherwise>null</otherwise>
+        </choose>
+    </sql>
+    <!--插入多条数据，并验证空-->
+    <sql id="INSERT_COLUMN_VALUE_VERIFY_NULL_LIST">
+        #{item.fid,jdbcType=VARCHAR},
+        <choose>
+            <when test="item.subsidiary != null ">#{item.subsidiary,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.paymentday != null ">#{item.paymentday,jdbcType=TIMESTAMP}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.budgetitem != null ">#{item.budgetitem,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.calltotalamount != null ">#{item.calltotalamount,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.installtotalamount != null ">#{item.installtotalamount,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.othertotalamount != null ">#{item.othertotalamount,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.reimbursetotalamount != null ">#{item.reimbursetotalamount,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.billstatus != null ">#{item.billstatus,jdbcType=INTEGER}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.reimbursstatus != null ">#{item.reimbursstatus,jdbcType=INTEGER}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.withholdingstatus != null ">#{item.withholdingstatus,jdbcType=INTEGER}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.isreimburseovertime != null ">#{item.isreimburseovertime,jdbcType=INTEGER}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.financialdepartment != null ">#{item.financialdepartment,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.workflowname != null ">#{item.workflowname,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.createusercode != null ">#{item.createusercode,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.createtime != null ">#{item.createtime,jdbcType=TIMESTAMP}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.modifyusercode != null ">#{item.modifyusercode,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.modifytime != null ">#{item.modifytime,jdbcType=TIMESTAMP}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.logicstate != null ">#{item.logicstate,jdbcType=INTEGER}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.invoicetitle != null ">#{item.invoicetitle,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>
+    </sql>
+    <!--联表查询对账单字段-->
+    <sql id="JOIN_TABLE_COLUMN_STATEMENT_BY_ID">
+        S.FID, S.SUBSIDIARY, S.PAYMENTDAY, S.BUDGETITEM, S.CALLTOTALAMOUNT,
+        S.INSTALLTOTALAMOUNT, S.OTHERTOTALAMOUNT, S.REIMBURSETOTALAMOUNT, S.BillSTATUS,
+        S.REIMBURSSTATUS,S.WITHHOLDINGSTATUS,S.ISREIMBURSEOVERTIME, S.FINANCIALDEPARTMENT,S.WORKFLOWNAME,
+        S.CREATEUSERCODE, S.CREATETIME, S.MODIFYUSERCODE, S.MODIFYTIME, S.LOGICSTATE,S.INVOICETITLE,
+        SI.FID as SID, SI.STATEMENTNUM, SI.WITHHOLDINGNUM, SI.DEPARTMENT, SI.COSTCENTER, SI.OUTSIDELINENUM,
+        SI.TOTALCOST, SI.LINECHARGES, SI.NUMCHARGES, SI.AMORTIZATIONAMOUNT, SI.OTHEREXPENSES, SI.GAP,
+        SI.REMARK, SI.CREATEUSERCODE, SI.CREATETIME, SI.MODIFYUSERCODE, SI.MODIFYTIME, SI.LOGICSTATE
+    </sql>
+
+    <!--新增一个对账单-->
+    <insert id="insertOne">
+       INSERT INTO T_FLR_STATEMENT
+        (<include refid="BASE_COLUMN_LIST" />)
+        VALUES (<include refid="INSERT_COLUMN_VALUE_VERIFY_NULL" />)
+    </insert>
+
+    <!--新增一批对账单-->
+    <insert id="insertArray">
+        INSERT ALL
+        <foreach collection="list" item="item" >
+            INTO T_FLR_STATEMENT (<include refid="BASE_COLUMN_LIST" />)
+            VALUES (<include refid="INSERT_COLUMN_VALUE_VERIFY_NULL_LIST" />)
+        </foreach> SELECT 1 FROM DUAL
+    </insert>
+
+    <!--删除对账单（逻辑）-->
+    <update id="deleteLogicById">
+        UPDATE T_FLR_STATEMENT SET <include refid="SET_LOGIC_DEL" />  WHERE FID = #{fid,jdbcType=VARCHAR}
+    </update>
+
+    <!--批量删除对账单（逻辑）-->
+    <update id="deleteLogicByIds">
+        UPDATE T_FLR_STATEMENT SET <include refid="SET_LOGIC_DEL" />  WHERE FID IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+    <!--修改对账单-->
+    <update id="updateByStatement">
+        UPDATE T_FLR_STATEMENT
+        <set>
+            <if test="financialdepartment!=null and financialdepartment!=''">
+                financialdepartment=#{financialdepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="invoicetitle!=null and invoicetitle!=''">
+                invoicetitle=#{invoicetitle,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <where>
+            <if test="fid!=null and fid!=''">
+                FID =#{fid,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </update>
+
+    <!--删除对账单-->
+    <delete id="deleteById">
+        DELETE FROM  T_FLR_STATEMENT WHERE FID = #{fid,jdbcType=VARCHAR}
+    </delete>
+
+    <!--批量删除对账单-->
+    <delete id="deleteByIds">
+        DELETE FROM  T_FLR_STATEMENT WHERE FID IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </delete>
+
+    <!--查询单个对账单-->
+    <select id="selectById" resultType="com.lhy.fool.flr.entity.FlrStatement" parameterType="string">
+        SELECT
+        <include refid="BASE_COLUMN_LIST" />
+        FROM
+        <include refid="TABLE_S" />
+        <where>
+            <if test="_parameter != null">
+                S.FID =#{fid,jdbcType=VARCHAR}
+            </if>
+            <include refid="LOG_STATUS" />
+        </where>
+    </select>
+
+    <!--查询单个对账单以及他的所有项-->
+    <select id="selectStatementById" resultMap="SELECT_STATEMENT_BY_ID">
+        SELECT <include refid="JOIN_TABLE_COLUMN_STATEMENT_BY_ID" /> FROM <include refid="TABLE_S" />
+        left join <include refid="TABLE_SI" /> on S.FID = SI.STATEMENTNUM
+        <where>
+            <if test="_parameter != null">
+                S.FID =#{fid,jdbcType=VARCHAR}
+            </if>
+            <include refid="LOG_STATUS" />
+            <include refid="LOG_STATUS_JOIN" />
+        </where>
+    </select>
+
+    <!--模糊查询所有对账单（导出）-->
+    <select id="listAll" resultType="com.lhy.fool.flr.entity.FlrStatement">
+        SELECT
+        <include refid="BASE_COLUMN_LIST" />
+        FROM
+        <include refid="TABLE_S" />
+        <where>
+            <if test="fid != null">
+                FID like CONCAT(CONCAT('%', #{fid}), '%')
+            </if>
+            <if test="subsidiary != null">
+                and  SUBSIDIARY like CONCAT(CONCAT('%', #{subsidiary}), '%')
+            </if>
+            <if test="paymentday != null">
+                and PAYMENTDAY like CONCAT(CONCAT('%', #{paymentday}), '%')
+            </if>
+            <if test="billstatus != null">
+                and BILLSTATUS =#{billstatus}
+            </if>
+            <include refid="LOG_STATUS" />
+        </where>
+    </select>
+
+    <!--根据条件模糊查询所有对账单 (分页)-->
+    <select id="listByCondition" resultType="com.lhy.fool.flr.entity.FlrStatement">
+        SELECT
+        <include refid="BASE_COLUMN_LIST" />
+        FROM
+        <include refid="TABLE_S" />
+        <where>
+            <if test="flrStatement.fid != null">
+                FID like CONCAT(CONCAT('%', #{flrStatement.fid}), '%')
+            </if>
+            <if test="flrStatement.subsidiary != null">
+                and  SUBSIDIARY like CONCAT(CONCAT('%', #{flrStatement.subsidiary}), '%')
+            </if>
+            <if test="flrStatement.paymentday != null">
+                and PAYMENTDAY like CONCAT(CONCAT('%', #{flrStatement.paymentday}), '%')
+            </if>
+            <if test="flrStatement.billstatus != null">
+                and BILLSTATUS = #{flrStatement.billstatus}
+            </if>
+            <include refid="LOG_STATUS" />
+        </where>
+    </select>
+
+</mapper>
+

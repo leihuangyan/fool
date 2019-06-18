@@ -3,7 +3,8 @@ server:
 
 spring:
     profiles:
-        active: dev
+#        active: dev
+        active: flr
     thymeleaf:
             prefix: classpath:/templates/
             check-template-location: true

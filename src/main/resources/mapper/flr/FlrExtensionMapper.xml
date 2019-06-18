@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhy.fool.flr.mapper.FlrExtensionMapper">
+
+    <!-- 通用查询结果列 -->
+    <sql id="BASE_COLUMN_LIST">
+        FID, DEPARTMENT, SUBSIDIARY, COSTCENTER, PAYMENTDAY, OUTSIDELINENUM, EXTENSIONNUMBER, OPENINGDATE, ISOFFSET, TOTALCOST, LINECHARGES, NUMCHARGES, ACTUALCALLCHARGE, MINUTESNUM, INSIDECALLMINUTES, GAP, EXPENSETYPE, OTHEREXPENSES, OTHEREXPENSESREMARKS, CREATEUSERCODE, CREATETIME, MODIFYUSERCODE, MODIFYTIME, LOGICSTATE
+    </sql>
+
+
+    <!-- 设置为逻辑删除状态-->
+    <sql id="SET_LOGIC_DEL">LOGICSTATE = 2</sql>
+    <!-- 取消逻辑删除状态-->
+    <sql id="UN_SET_LOGIC_ADD">LOGICSTATE = 1 </sql>
+    <!--表足列 引用时在最后带 ，-->
+    <sql id="BAST_INSERT_TABLE_FOOT">
+        <choose>
+            <when test="createusercode != null ">#{createusercode}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="createtime != null ">#{createtime}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="modifyusercode != null ">#{modifyusercode}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="modifytime != null ">#{modifytime}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="logicstate != null ">#{logicstate}</when>
+            <otherwise>null</otherwise>
+        </choose>
+    </sql>
+    <!--表足列 引用时在最后带 ，-->
+    <sql id="BAST_INSERT_TABLE_FOOT_LIST">
+        <choose>
+            <when test="item.createusercode != null ">#{item.createusercode,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.createtime != null ">#{item.createtime,jdbcType=TIMESTAMP}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.modifyusercode != null ">#{item.modifyusercode,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.modifytime != null ">#{item.modifytime,jdbcType=TIMESTAMP}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.logicstate != null ">#{item.logicstate,jdbcType=INTEGER}</when>
+            <otherwise>null</otherwise>
+        </choose>
+    </sql>
+
+    <!--表-->
+    <sql id="TABLE">T_FLR_EXTENSION </sql>
+
+    <!--插入一条数据，并验证空-->
+    <sql id="INSERT_COLUMN_VALUE_VERIFY_NULL">
+        #{fid},
+        <choose>
+            <when test="department != null ">#{department}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="subsidiary != null ">#{subsidiary}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="costcenter != null ">#{costcenter}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="paymentday != null ">#{paymentday}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="outsidelinenum != null ">#{outsidelinenum}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="extensionnumber != null ">#{extensionnumber}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="openingdate != null ">#{openingdate}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="isoffset != null ">#{isoffset}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="totalcost != null ">#{totalcost}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="linecharges != null ">#{linecharges}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="numcharges != null ">#{numcharges}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="actualcallcharge != null ">#{actualcallcharge}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="minutesnum != null ">#{minutesnum}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="insidecallminutes != null ">#{insidecallminutes}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="gap != null ">#{gap}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="expensetype != null ">#{expensetype}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="otherexpenses != null ">#{otherexpenses}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="otherexpensesremarks != null ">#{otherexpensesremarks}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <include refid="BAST_INSERT_TABLE_FOOT"></include>
+    </sql>
+    <!--插入多条数据，并验证空-->
+    <sql id="INSERT_COLUMN_VALUE_VERIFY_NULL_LIST">
+        #{item.fid},
+        <choose>
+            <when test="item.department != null ">#{item.department,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.subsidiary != null ">#{item.subsidiary,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.costcenter != null ">#{item.costcenter,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.paymentday != null ">#{item.paymentday,jdbcType=TIMESTAMP}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.outsidelinenum != null ">#{item.outsidelinenum,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.extensionnumber != null ">#{item.extensionnumber,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.openingdate != null ">#{item.openingdate,jdbcType=TIMESTAMP}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.isoffset != null ">#{item.isoffset,jdbcType=INTEGER}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.totalcost != null ">#{item.totalcost,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.linecharges != null ">#{item.linecharges,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.numcharges != null ">#{item.numcharges,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.actualcallcharge != null ">#{item.actualcallcharge,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.minutesnum != null ">#{item.minutesnum,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.insidecallminutes != null ">#{item.insidecallminutes,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.gap != null ">#{item.gap,jdbcType=DOUBLE}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.expensetype != null ">#{item.expensetype,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.otherexpenses != null ">#{item.otherexpenses,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <choose>
+            <when test="item.otherexpensesremarks != null ">#{item.otherexpensesremarks,jdbcType=VARCHAR}</when>
+            <otherwise>null</otherwise>
+        </choose>,
+        <include refid="BAST_INSERT_TABLE_FOOT_LIST"></include>
+    </sql>
+
+
+    <!--新增一个对账单-->
+    <insert id="insertOne">
+        INSERT INTO <include refid="TABLE" />
+        (<include refid="BASE_COLUMN_LIST" />)
+        VALUES (<include refid="INSERT_COLUMN_VALUE_VERIFY_NULL" />)
+    </insert>
+
+    <!--新增一批对账单-->
+    <insert id="insertArray">
+        INSERT ALL
+        <foreach collection="list" item="item" >
+            INTO <include refid="TABLE" /> (<include refid="BASE_COLUMN_LIST" />)
+            VALUES (<include refid="INSERT_COLUMN_VALUE_VERIFY_NULL_LIST" />)
+        </foreach> SELECT 1 FROM DUAL
+    </insert>
+
+    <!--删除对账单（逻辑）-->
+    <update id="deleteLogicById">
+        UPDATE <include refid="TABLE" /> SET <include refid="SET_LOGIC_DEL" />  WHERE FID = #{fid,jdbcType=VARCHAR}
+    </update>
+
+    <!--批量删除对账单（逻辑）-->
+    <update id="deleteLogicByIds">
+        UPDATE <include refid="TABLE" /> SET <include refid="SET_LOGIC_DEL" />  WHERE FID IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+    <!--删除对账单-->
+    <delete id="deleteById">
+        DELETE FROM  <include refid="TABLE" /> WHERE FID = #{fid,jdbcType=VARCHAR}
+    </delete>
+
+    <!--批量删除对账单-->
+    <delete id="deleteByIds">
+        DELETE FROM  <include refid="TABLE" /> WHERE FID IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </delete>
+
+</mapper>

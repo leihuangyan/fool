@@ -7,9 +7,9 @@ import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * <p>
@@ -22,12 +22,11 @@ public class GeneratorServiceEntity {
 
     public static void main(String[] args) {
         String projectPath = System.getProperty("user.dir");
-
-        String dbUrl = "jdbc:mysql://47.101.162.124:3306/makeforyou?useUnicode=true&characterEncoding=UTF-8";
-
-        String packageName = "com.lhy.fool.admin";
-        String modelName = "person";
-        String [] tables = {"girl"};
+        //String dbUrl = "jdbc:mysql://47.101.162.124:3306/makeforyou?useUnicode=true&characterEncoding=UTF-8";
+        String dbUrl = "jdbc:oracle:thin:@10.230.13.23:1521:fin";
+        String packageName = "com.lhy.fool";
+        String modelName = "flr";
+        String [] tables = {"T_FLR_EXTENSION","T_FLR_STATEMENTITEM","T_FLR_STATEMENT","T_FLR_WEBSITE"};
         generateByTables(dbUrl,projectPath ,packageName,modelName, tables);
     }
 
@@ -43,11 +42,14 @@ public class GeneratorServiceEntity {
     private static void generateByTables(String dbUrl,String projectPath, String packageName,String moduleName, String... tableNames) {
         // =================================== [数据源配置] ===================================
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setDbType(DbType.MYSQL)
+        dataSourceConfig.setDbType(DbType.ORACLE)
                 .setUrl(dbUrl)
-                .setUsername("lhy")
-                .setPassword("1223")
-                .setDriverName("com.mysql.cj.jdbc.Driver");
+                //.setUsername("lhy")
+                //.setPassword("1223")
+                //.setDriverName("com.mysql.cj.jdbc.Driver");
+                .setUsername("deppon2011")
+                .setPassword("depponlms6711")
+                .setDriverName("oracle.jdbc.driver.OracleDriver");
 
         // =================================== [策略配置] ===================================
         StrategyConfig strategyConfig = new StrategyConfig();
