@@ -1,6 +1,6 @@
 package com.lhy.fool.util.other;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.NoArgsConstructor;
 
 /**
@@ -41,7 +41,7 @@ public class PageUtil {
         }
     }
 
-    public IPage initPage(IPage page){
+    public Page initPage(Page page){
         page.setSize(this.r);
         page.setCurrent(this.p);
         return  page;

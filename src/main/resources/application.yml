@@ -3,8 +3,8 @@ server:
 
 spring:
     profiles:
-#        active: dev
-        active: flr
+        active: dev
+#        active: flr
     thymeleaf:
             prefix: classpath:/templates/
             check-template-location: true
@@ -22,10 +22,8 @@ spring:
           multipart:
             max-file-size: 10MB
             max-request-size: 100MB
-    mvc:
-      favicon:
-        enabled: false
-
+    resources:
+      static-locations: classpath:/static/
 logging:
   level:
       com.ls.ggtt: debug

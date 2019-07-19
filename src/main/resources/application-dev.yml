@@ -50,3 +50,9 @@ mybatis-plus:
   configuration:
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
 
+
+encrypt:
+  rsa:
+    privateKeyName: private.der
+    publicKeyName:  public.der
+
