@@ -3,9 +3,9 @@ spring:
       type: com.alibaba.druid.pool.DruidDataSource
       #druid相关配置
       driver-class-name: oracle.jdbc.OracleDriver
-      url: jdbc:oracle:thin:@10.230.13.23:1521:fin
-      username: deppon2011
-      password: depponlms6711
+      url: 
+      username: 
+      password: 
       #  连接池的配置信息
       #配置初始化大小/最小/最大
       initial-size: 1
