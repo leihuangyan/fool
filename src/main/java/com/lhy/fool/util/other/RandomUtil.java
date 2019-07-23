@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 public class RandomUtil {
 
-
+	private static final int SIXTEEN=16;
 	/**
 	 * 生成随机数字和字母
 	 * 
@@ -42,6 +42,21 @@ public class RandomUtil {
 		return UUID.randomUUID().toString().replaceAll("-", "");
 	}
 
+
+	public static String getUUIDRandom() {
+		Random rd = new Random();
+		String res = Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase()
+				+ Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase()
+				+ Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase()
+				+ Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase()
+				+ Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase()
+				+ Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase()
+				+ Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase()
+				+ Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase()
+				+ Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase()
+				+ Integer.toHexString(rd.nextInt(SIXTEEN)).toUpperCase();
+		return res;
+	}
 	/**
 	 * 测试抽奖算法
 	 * 

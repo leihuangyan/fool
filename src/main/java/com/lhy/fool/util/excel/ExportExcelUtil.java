@@ -191,6 +191,7 @@ public class ExportExcelUtil<T> {
 
             if(dataList !=null&&!dataList.isEmpty()){
                 for (int colunmNum = 0; colunmNum < dataList.size(); colunmNum++) {
+                    //创建单元格
                     HSSFCell cell0 = row.createCell(colunmNum);
                     // 设置单元格格式
                     //cell0.setCellType(HSSFCell.CELL_TYPE_STRING);

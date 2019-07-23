@@ -40,6 +40,7 @@ public class CEVUtil {
 		if (filePath == null || filePath.trim().equals(""))
 			return false;
 		File file = new File(filePath);
+		System.out.println(file);
 		//文件不存在或为空
 		if (file == null || !file.exists()) {
 			return false;

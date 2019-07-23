@@ -3,12 +3,16 @@ package com.lhy.fool.admin.person.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lhy.fool.admin.person.controller.supplier.SendCopDataModel;
 import com.lhy.fool.util.enrypt.EncryptService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -35,5 +39,26 @@ public class GirlController {
         String modle ="{\"Models\":[{\"description\":\"XXXX申请说明\",\"controlUnitName\":\"上海德启信息科技有限公司\",\"empname\":\"孙伟\",\"supplier\":\"中国联通\",\"costcenter\":\"NBJ1006\",\"bank\":\"XXX银行\",\"invoiceTitle\":\"xxx发票抬头\",\"departmentType\":\"经营\",\"payee\":\"XXX收款人\",\"empAdminName\":\"仓储与供应链研发部\",\"workFlowName\":null,\"financialDepartment\":\"宁波鄞州区姜山营业部\",\"isReimburseTimeOut\":2,\"reimburseTotalAmount\":763596.0,\"accountType\":\"账户性质\",\"bankProvinces\":\"上海\",\"bankCity\":\"上海市\",\"bankBranch\":\"上海市XXXX支行\",\"payeeNum\":\"xxxx2121313131\",\"billStartTime\":1562555359287,\"invoiceDiff\":false},{\"description\":\"XXXX申请说明\",\"controlUnitName\":\"上海德启信息科技有限公司\",\"empname\":\"孙伟\",\"supplier\":\"中国联通\",\"costcenter\":\"NBJ1006\",\"bank\":\"XXX银行\",\"invoiceTitle\":\"xxx发票抬头\",\"departmentType\":\"经营\",\"payee\":\"XXX收款人\",\"empAdminName\":\"仓储与供应链研发部\",\"workFlowName\":null,\"financialDepartment\":\"宁波鄞州区姜山营业部\",\"isReimburseTimeOut\":2,\"reimburseTotalAmount\":763596.0,\"accountType\":\"账户性质\",\"bankProvinces\":\"上海\",\"bankCity\":\"上海市\",\"bankBranch\":\"上海市XXXX支行\",\"payeeNum\":\"xxxx2121313131\",\"billStartTime\":1562555359287,\"invoiceDiff\":false},{\"description\":\"XXXX申请说明\",\"controlUnitName\":\"上海德启信息科技有限公司\",\"empname\":\"孙伟\",\"supplier\":\"中国联通\",\"costcenter\":\"NBJ1006\",\"bank\":\"XXX银行\",\"invoiceTitle\":\"xxx发票抬头\",\"departmentType\":\"经营\",\"payee\":\"XXX收款人\",\"empAdminName\":\"仓储与供应链研发部\",\"workFlowName\":null,\"financialDepartment\":\"宁波鄞州区姜山营业部\",\"isReimburseTimeOut\":2,\"reimburseTotalAmount\":763596.0,\"accountType\":\"账户性质\",\"bankProvinces\":\"上海\",\"bankCity\":\"上海市\",\"bankBranch\":\"上海市XXXX支行\",\"payeeNum\":\"xxxx2121313131\",\"billStartTime\":1562555359287,\"invoiceDiff\":false}]}";
         return new ObjectMapper().writeValueAsString(modle);
     }
+
+    @PostMapping("/im")
+    public String im() {
+        String uri = "";
+        //restTemplate.getForObject(uri,)
+        return "";
+    }
+
+
+
+    @PostMapping(value = "/re",produces="application/json;charset=UTF-8")
+    public String re(SendCopDataModel op,String sign,String key) throws JsonProcessingException {
+        log.info("请求成功");
+        log.info(op.toString());
+        log.info(sign);
+        log.info(key);
+        Map<String,String> mp = new HashMap<>();
+        mp.put("0","OK");
+        return  new ObjectMapper().writeValueAsString(mp);
+    }
+
 }
 

@@ -16,7 +16,8 @@ import java.util.List;
  * @author 98403
  * @date: 2019-06-24 17:20
  */
-public class Excel {
+public class ExcelDome {
+    //导出
     public void saveExcel(List<Girl> users){
         //创建HSSFWorkbook对象(excel的文档对象)
         HSSFWorkbook wb = new HSSFWorkbook();
