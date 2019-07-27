@@ -33,7 +33,7 @@ Ext.define('lsp.Statement.Store', {
     proxy : {
         type : 'ajax',
         actionMethods: 'GET',
-        url : '../flr/flrExtension/list.action'
+            url : '../flr/flrExtension/list.action'
     }
 });
 

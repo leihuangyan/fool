@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入css -->
+    <!--<link rel="stylesheet" th:href="@{/css/plugins/font-awesome-4.7.0/css/font-awesome.min.css}"  media="all">-->
+    <link rel="stylesheet" th:href="@{/layui-v2.4.5/css/layui.css}"  media="all">
+    <script th:src="@{/layui-v2.4.5/layui.js}" charset="utf-8"></script>
+</head>
+<table id="demo"></table>
+<!--<div id="test1"></div>-->
+
+<body>
+    <script>
+        layui.use(['table','laypage'], function(){
+            var table = layui.table;
+            // var laypage = layui.laypage;
+            // laypage.render({
+            //     elem: 'test1'
+            //     ,count: 50
+            //     ,groups:3
+            //     ,limit:2
+            // });
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+                ,url: '/girl/list' //数据接口
+                ,page:true
+                ,limits:[5,10,20,30]
+                ,limit:10
+                ,cols: [
+                    [
+                    {field: 'id', title: 'ID', width:'25%', sort: true, fixed: 'left'}
+                    ,{field: 'name', title: '姓名', width:'25%'}
+                    ,{field: 'age', title: '年龄', width:'25%', sort: true}
+                    ,{field: 'address', title: '地址', width:'25%'}
+                ]
+                ]
+            });
+        });
+    </script>
+</body>
+</html>

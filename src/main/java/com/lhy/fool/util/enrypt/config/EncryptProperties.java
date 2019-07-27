@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "encrypt.rsa")
 public class EncryptProperties {
+
     private String privateKeyName;
     private String publicKeyName;
 }

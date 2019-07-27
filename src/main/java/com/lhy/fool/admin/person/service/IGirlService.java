@@ -13,4 +13,5 @@ import com.lhy.fool.admin.person.entity.Girl;
  */
 public interface IGirlService extends IService<Girl> {
 
+
 }

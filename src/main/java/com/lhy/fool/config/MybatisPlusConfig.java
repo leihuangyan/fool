@@ -38,7 +38,7 @@ public class MybatisPlusConfig {
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setDialectType("oracle");
+        //paginationInterceptor.setDialectType("oracle");
         return paginationInterceptor;
     }
 

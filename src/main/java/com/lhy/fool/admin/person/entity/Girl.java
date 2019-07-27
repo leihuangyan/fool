@@ -51,6 +51,4 @@ public class Girl implements Serializable {
         return list;
     }
 
-
-
 }
