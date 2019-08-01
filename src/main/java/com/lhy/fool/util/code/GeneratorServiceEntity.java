@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * <p>
  * 测试生成代码
@@ -22,11 +21,11 @@ public class GeneratorServiceEntity {
 
     public static void main(String[] args) {
         String projectPath = System.getProperty("user.dir");
-        //String dbUrl = "jdbc:mysql://47.101.162.124:3306/makeforyou?useUnicode=true&characterEncoding=UTF-8";
-        String dbUrl = "jdbc:oracle:thin:@10.230.13.23:1521:fin";
+        String dbUrl = "jdbc:mysql://47.101.162.124:3306/makeforyou?useUnicode=true&characterEncoding=UTF-8";
+        //String dbUrl = "jdbc:oracle:thin:@10.230.13.23:1521:fin";
         String packageName = "com.lhy.fool";
-        String modelName = "flr";
-        String [] tables = {"T_FLR_EXTENSION","T_FLR_STATEMENTITEM","T_FLR_STATEMENT","T_FLR_WEBSITE"};
+        String modelName = "admin";
+        String [] tables = {"t_user"};
         generateByTables(dbUrl,projectPath ,packageName,modelName, tables);
     }
 
@@ -44,12 +43,10 @@ public class GeneratorServiceEntity {
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.ORACLE)
                 .setUrl(dbUrl)
-                //.setUsername("lhy")
-                //.setPassword("1223")
-                //.setDriverName("com.mysql.cj.jdbc.Driver");
-                .setUsername("deppon2011")
-                .setPassword("depponlms6711")
-                .setDriverName("oracle.jdbc.driver.OracleDriver");
+                .setDbType(DbType.MYSQL)
+                .setUsername("lhy")
+                .setPassword("1223")
+                .setDriverName("com.mysql.cj.jdbc.Driver");
 
         // =================================== [策略配置] ===================================
         StrategyConfig strategyConfig = new StrategyConfig();
@@ -62,6 +59,7 @@ public class GeneratorServiceEntity {
         //跳过视图
         strategyConfig.setSkipView(true);
         strategyConfig.setInclude(tableNames);
+        strategyConfig.setLogicDeleteFieldName("status");
 
         // =================================== [全局配置] ===================================
         GlobalConfig config = new GlobalConfig();
@@ -87,6 +85,7 @@ public class GeneratorServiceEntity {
                 // to do nothing
             }
         };
+
         // 如果模板引擎是 freemarker
         //String templatePath = "/templates/mapper.xml.ftl";
         // 如果模板引擎是 velocity  (mp 默认模板)
@@ -111,7 +110,9 @@ public class GeneratorServiceEntity {
         new AutoGenerator().setGlobalConfig(config)
                 .setDataSource(dataSourceConfig)
                 .setStrategy(strategyConfig)
-                .setPackageInfo(packageConfig).setCfg(cfg).setTemplate(templateConfig)
+                .setPackageInfo(packageConfig)
+                .setCfg(cfg)
+                .setTemplate(templateConfig)
                 .execute();
     }
 
