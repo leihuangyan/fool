@@ -31,6 +31,8 @@
         <hutool-version>4.6.0</hutool-version>
         <swagger-version>2.6.1</swagger-version>
         <fastjson-version>1.2.57</fastjson-version>
+        <velocity-version>2.0</velocity-version>
+        <mail-version>1.4.7</mail-version>
     </properties>
 
 
@@ -55,6 +57,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- shiro -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring-boot-starter</artifactId>
+            <!--<version>1.4.0</version>-->
         </dependency>
 
         <!--boot test-->
@@ -83,7 +92,7 @@
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
-            <version>2.0</version>
+            <version>${velocity-version}</version>
         </dependency>
 
         <!--  =======================【集成MP结束】=======================   -->
@@ -106,7 +115,7 @@
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
-            <version>1.4.7</version>
+            <version>${mail-version}</version>
         </dependency>
 
         <!--  =======================【mysql 驱动  】=======================   -->

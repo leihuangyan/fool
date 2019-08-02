@@ -82,7 +82,7 @@ html{background-color: #f2f2f2; color: #666;}
 .layui-table td, 
 .layui-table[lay-skin="line"],
 .layui-table[lay-skin="row"], 
-.layui-table-view, 
+.layui-table-views,
 .layui-table-header,
 .layui-table-tool,
 .layui-table-page,

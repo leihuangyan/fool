@@ -15,7 +15,7 @@ public class Md5Utils
 {
 
     /** 16进制的字符数组 */
-    private final static String[] hexDigits = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
+    private final static String[] hexDigits = { "0", "1", "2", "3", "4", "layui", "6", "7", "8", "9", "a", "b", "c", "d",
             "e", "f" };
 
     /**

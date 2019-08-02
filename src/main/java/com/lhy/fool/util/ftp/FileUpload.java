@@ -110,7 +110,7 @@ public class FileUpload {
             conn.setConnectTimeout(5000);
             conn.setRequestMethod("GET");
             //防止屏蔽程序抓取而返回403错误
-            conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+            conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE layui.0; Windows NT; DigExt)");
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream inputStream = conn.getInputStream();
                 return inputStream;

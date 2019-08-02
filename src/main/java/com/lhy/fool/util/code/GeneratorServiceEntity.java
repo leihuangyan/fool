@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,9 @@ public class GeneratorServiceEntity {
         String projectPath = System.getProperty("user.dir");
         String dbUrl = "jdbc:mysql://47.101.162.124:3306/makeforyou?useUnicode=true&characterEncoding=UTF-8";
         //String dbUrl = "jdbc:oracle:thin:@10.230.13.23:1521:fin";
-        String packageName = "com.lhy.fool";
-        String modelName = "admin";
-        String [] tables = {"t_user"};
+        String packageName = "com.lhy.fool.sys";
+        String modelName = "dict";
+        String [] tables = {"t_dict"};
         generateByTables(dbUrl,projectPath ,packageName,modelName, tables);
     }
 
@@ -50,16 +51,29 @@ public class GeneratorServiceEntity {
 
         // =================================== [策略配置] ===================================
         StrategyConfig strategyConfig = new StrategyConfig();
-        // 生成lombok
-        strategyConfig.setEntityLombokModel(true);
-        //下划线
-        strategyConfig.setNaming(NamingStrategy.underline_to_camel);
-        //无改变
-        strategyConfig.setTablePrefix("t_");
-        //跳过视图
-        strategyConfig.setSkipView(true);
-        strategyConfig.setInclude(tableNames);
-        strategyConfig.setLogicDeleteFieldName("status");
+            // 生成lombok
+           strategyConfig.setEntityLombokModel(true)
+              .setNaming(NamingStrategy.underline_to_camel)
+              //无改变
+              .setTablePrefix("t_")
+              //跳过视图
+              .setSkipView(true)
+              //包含表名
+              .setInclude(tableNames)
+              //逻辑删除字段
+              .setLogicDeleteFieldName("status")
+              //父类
+              .setSuperEntityClass("com.lhy.fool.base.SuperEntitey")
+              .setSuperEntityColumns("createDate","createCode","updateDate","updateCode","status")
+              .setRestControllerStyle(true)
+              //驼峰命名
+              .setControllerMappingHyphenStyle(true)
+              //生成实体时，生成字段注解
+              .setEntityTableFieldAnnotationEnable(true)
+              //Boolean类型字段是否移除is前缀（默认 false）
+              .setEntityBooleanColumnRemoveIsPrefix(true);
+
+
 
         // =================================== [全局配置] ===================================
         GlobalConfig config = new GlobalConfig();
@@ -69,6 +83,7 @@ public class GeneratorServiceEntity {
                 //开启二级缓存
                 .setEnableCache(false)
                 .setBaseColumnList(true)
+                //覆盖
                 .setFileOverride(true);
 
         // =================================== [包配置] ===================================

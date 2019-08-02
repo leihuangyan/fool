@@ -14,7 +14,7 @@ public class ExceptionUtil {
     /**
      * 处理excepiton 中的信息，并抛出BusiException
      * @author 376277
-     * @date 2017-5-7下午12:51:16
+     * @date 2017-layui-7下午12:51:16
      * @return void
      */
     public static void throwBusiException(Exception e){
@@ -26,7 +26,7 @@ public class ExceptionUtil {
     /**
      * 处理excepiton 中的信息，并返回BusiException对象
      * @author 376277
-     * @date 2017-5-7下午12:51:16
+     * @date 2017-layui-7下午12:51:16
      * @return void
      */
     public static RuntimeException throwBusiException1(Exception e){
@@ -38,7 +38,7 @@ public class ExceptionUtil {
     /**
      * 返回异常信息描述。
      * @author 376277
-     * @date 2017-5-7下午12:51:16
+     * @date 2017-layui-7下午12:51:16
      * @return void
      */
     public static String returnExceptionMsg(Exception e){

@@ -23,6 +23,9 @@ import java.util.HashMap;
 @Slf4j
 public class Application {
 
+
+
+
     public static void main(String[] args) {
         //String user = "2468568750@qq.com";
         //user = "984038622@qq.com";
@@ -51,7 +54,7 @@ public class Application {
         //Origin: http://www.ilol.ylol3.top
         //Referer: http://www.ilol.ylol3.top/
         //Upgrade-Insecure-Requests: 1
-        //User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        //User-Agent: Mozilla/layui.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
 
     }
 }

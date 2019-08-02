@@ -1,10 +1,5 @@
 /**
-
  @Name：layuiAdmin iframe版核心模块
- @Author：贤心
- @Site：http://www.layui.com/admin/
- @License：LPPL
-    
  */
  
 layui.define('view', function(exports){
@@ -23,7 +18,7 @@ layui.define('view', function(exports){
   ,FILTER_TAB_TBAS = 'layadmin-layout-tabs'
   ,APP_SPREAD_SM = 'layadmin-side-spread-sm', TABS_BODY = 'layadmin-tabsbody-item'
   ,ICON_SHRINK = 'layui-icon-shrink-right', ICON_SPREAD = 'layui-icon-spread-left'
-  ,SIDE_SHRINK = 'layadmin-side-shrink', SIDE_MENU = 'LAY-system-side-menu'
+  ,SIDE_SHRINK = 'layadmin-side-shrink', SIDE_MENU = 'LAY-views-side-menu'
 
   //通用方法
   ,admin = {
@@ -97,7 +92,7 @@ layui.define('view', function(exports){
         }, options.ajax));
       });
     }
-    
+
     //屏幕类型
     ,screen: function(){
       var width = $win.width()
@@ -277,8 +272,7 @@ layui.define('view', function(exports){
       if(!admin.tabsPage.index) return;
       $(TABS_HEADER).eq(admin.tabsPage.index).find('.layui-tab-close').trigger('click');
     }
-    
-    //……
+
   };
   
   //事件
@@ -306,7 +300,7 @@ layui.define('view', function(exports){
       admin.popupRight({
         id: 'LAY_adminPopupTheme'
         ,success: function(){
-          view(this.id).render('system/theme')
+          view(this.id).render('views/theme')
         }
       });
     }
@@ -347,21 +341,26 @@ layui.define('view', function(exports){
       admin.popupRight({
         id: 'LAY_adminPopupAbout'
         ,success: function(){
-          view(this.id).render('system/about')
+          view(this.id).render('views/about')
         }
       });
     }
-    
+
     //弹出更多面板
-    ,more: function(){
-      admin.popupRight({
-        id: 'LAY_adminPopupMore'
-        ,success: function(){
-          view(this.id).render('system/more')
+    ,screenfull: function(){
+        if (!$(this).hasClass("full-on")) {
+            var docElm = document.documentElement;
+            var full = docElm.requestFullScreen || docElm.webkitRequestFullScreen ||
+                docElm.mozRequestFullScreen || docElm.msRequestFullscreen;
+            "undefined" !== typeof full && full && full.call(docElm);
+        } else {
+            document.exitFullscreen ? document.exitFullscreen()
+                : document.mozCancelFullScreen ? document.mozCancelFullScreen()
+                : document.webkitCancelFullScreen ? document.webkitCancelFullScreen()
+                    : document.msExitFullscreen && document.msExitFullscreen()
         }
-      });
     }
-    
+
     //返回上一页
     ,back: function(){
       history.back();
@@ -469,7 +468,7 @@ layui.define('view', function(exports){
     
     //关闭其它标签页
     ,closeOtherTabs: function(type){
-      var TABS_REMOVE = 'LAY-system-pagetabs-remove';
+      var TABS_REMOVE = 'LAY-views-pagetabs-remove';
       if(type === 'all'){
         $(TABS_HEADER+ ':gt(0)').remove();
         $(APP_BODY).find('.'+ TABS_BODY+ ':gt(0)').remove();
@@ -613,7 +612,7 @@ layui.define('view', function(exports){
   });
   
   //监听侧边导航点击事件
-  element.on('nav(layadmin-system-side-menu)', function(elem){
+  element.on('nav(layadmin-views-side-menu)', function(elem){
     if(elem.siblings('.layui-nav-child')[0] && container.hasClass(SIDE_SHRINK)){
       admin.sideFlexible('spread');
       layer.close(elem.data('index'));

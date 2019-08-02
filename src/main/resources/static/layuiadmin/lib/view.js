@@ -1,10 +1,5 @@
 /**
-
  @Name：layuiAdmin 视图模块
- @Author：贤心
- @Site：http://www.layui.com/admin/
- @License：LPPL
-    
  */
  
 layui.define(['laytpl', 'layer'], function(exports){
@@ -136,7 +131,7 @@ layui.define(['laytpl', 'layer'], function(exports){
       type: 1
       ,title: '提示'
       ,content: ''
-      ,id: 'LAY-system-view-popup'
+      ,id: 'LAY-views-views-popup'
       ,skin: 'layui-layer-admin' + (skin ? ' ' + skin : '')
       ,shadeClose: true
       ,closeBtn: false
@@ -168,10 +163,8 @@ layui.define(['laytpl', 'layer'], function(exports){
   Class.prototype.render = function(views, params){
     var that = this, router = layui.router();
     views = setter.views + views + setter.engine;
-    
     $('#'+ LAY_BODY).children('.layadmin-loading').remove();
     view.loading(that.container); //loading
-    
     //请求模板
     $.ajax({
       url: views

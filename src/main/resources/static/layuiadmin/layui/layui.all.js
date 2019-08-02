@@ -331,12 +331,12 @@ layui.define(function (e) {
                 })
             }).replace(/(?="|')/g, "\\").replace(c.query(), function (e) {
                 return e = e.replace(a, "").replace(l, ""),
-                    '";' + e.replace(/\\/g, "") + ';view+="'
+                    '";' + e.replace(/\\/g, "") + ';views+="'
             }).replace(c.query(1), function (e) {
                 var c = '"+(';
                 return e.replace(/\s/g, "") === r.open + r.close ? "" : (e = e.replace(n(r.open + "|" + r.close), ""), /^=/.test(e) && (e = e.replace(/^=/, ""), c = '"+_escape_('), c + e.replace(/\\/g, "") + ')+"')
             }),
-                e = '"use strict";var view = "' + e + '";return view;';
+                e = '"use strict";var views = "' + e + '";return views;';
             try {
                 return o.cache = e = new Function("d, _escape_", e),
                     e(t, c.escape)
@@ -3770,7 +3770,7 @@ layui.define(function (e) {
                     e.metaKey = !!e.metaKey,
                     a.filter ? a.filter(e, o) : e
             },
-            props: "altKey bubbles cancelable ctrlKey currentTarget detail eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),
+            props: "altKey bubbles cancelable ctrlKey currentTarget detail eventPhase metaKey relatedTarget shiftKey target timeStamp views which".split(" "),
             fixHooks: {},
             keyHooks: {
                 props: "char charCode key keyCode".split(" "),
@@ -7203,7 +7203,7 @@ layui.define("jquery", function (e) {
         alpha: !1,
         format: "hex",
         predefine: !1,
-        colors: ["#009688", "#5FB878", "#1E9FFF", "#FF5722", "#FFB800", "#01AAED", "#999", "#c00", "#ff8c00", "#ffd700", "#90ee90", "#00ced1", "#1e90ff", "#c71585", "rgb(0, 186, 189)", "rgb(255, 120, 0)", "rgb(250, 212, 0)", "#393D49", "rgba(0,0,0,.5)", "rgba(255, 69, 0, 0.68)", "rgba(144, 240, 144, 0.5)", "rgba(31, 147, 255, 0.73)"]
+        colors: ["#009688", "#5FB878", "#1E9FFF", "#FF5722", "#FFB800", "#01AAED", "#999", "#c00", "#ff8c00", "#ffd700", "#90ee90", "#00ced1", "#1e90ff", "#c71585", "rgb(0, 186, 189)", "rgb(255, 120, 0)", "rgb(250, 212, 0)", "#393D49", "rgba(0,0,0,.layui)", "rgba(255, 69, 0, 0.68)", "rgba(144, 240, 144, 0.layui)", "rgba(31, 147, 255, 0.73)"]
     },
         D.prototype.render = function () {
             var e = this,
@@ -8060,7 +8060,7 @@ layui.define(["laytpl", "laypage", "layer", "form", "util"], function (e) {
         u = ".layui-table",
         y = "layui-hide",
         h = "layui-none",
-        f = "layui-table-view",
+        f = "layui-table-views",
         p = ".layui-table-tool",
         v = ".layui-table-box",
         m = ".layui-table-init",
@@ -10007,7 +10007,7 @@ layui.define("jquery", function (e) {
                     c.html('<ol class="layui-code-ol"><li>' + o.replace(/[\r\t\n]+/g, "</li><li>") + "</li></ol>"),
                     c.find(">.layui-code-h3")[0] || c.prepend('<h3 class="layui-code-h3">' + (c.attr("lay-title") || e.title || "code") + (e.about ? '<a href="' + l + '" target="_blank">layui.code</a>' : "") + "</h3>");
                 var d = c.find(">.layui-code-ol");
-                c.addClass("layui-box layui-code-view"),
+                c.addClass("layui-box layui-code-views"),
                     (c.attr("lay-skin") || e.skin) && c.addClass("layui-code-" + (c.attr("lay-skin") || e.skin)),
                     (d.find("li").length / 100 | 0) > 0 && d.css("margin-left", (d.find("li").length / 100 | 0) + "px"),
                     (c.attr("lay-height") || e.height) && d.css("max-height", c.attr("lay-height") || e.height)

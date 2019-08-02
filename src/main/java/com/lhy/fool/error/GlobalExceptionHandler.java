@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
             errorInfo.setMsg(msg);
         }
         errorInfo.setUrl(servletPath);
-        String reg="^(/app)/\\w*/\\w*";
+        String reg="^(/api)/\\w*/\\w*";
         if (servletPath.matches(reg)) {
             //错误请求来自APP 返回JSON
             doApp(response,errorInfo);

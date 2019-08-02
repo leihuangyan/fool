@@ -1,10 +1,5 @@
 /**
-
  @Name：layuiAdmin 公共业务
- @Author：贤心
- @Site：http://www.layui.com/admin/
- @License：LPPL
-    
  */
  
 layui.define(function(exports){
@@ -17,8 +12,6 @@ layui.define(function(exports){
   
   //公共业务的逻辑处理可以写在此处，切换任何页面都会执行
   //……
-  
-  
   
   //退出
   admin.events.logout = function(){

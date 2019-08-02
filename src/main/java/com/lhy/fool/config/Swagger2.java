@@ -52,7 +52,7 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         StringBuffer sb = new StringBuffer();
-        sb.append("测试user {id:1; token:52b1c6cfd5de428da7648fd6c3846a42}");
+        //sb.append("测试user {id:1; token:52b1c6cfd5de428da7648fd6c3846a42}");
         return new ApiInfoBuilder()
                 //文档内容配置信息
                 .title("xxx")

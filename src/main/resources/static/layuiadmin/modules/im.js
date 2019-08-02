@@ -1,10 +1,5 @@
 /**
-
  @Name：layuiAdmin 用户登入和注册等
- @Author：贤心
- @Site：http://www.layui.com/admin/
- @License: LPPL
-    
  */
  
 layui.define(['index', 'layim'], function(exports){
@@ -66,7 +61,7 @@ layui.define(['index', 'layim'], function(exports){
     //,title: 'WebIM' //自定义主面板最小化时的标题
     //,right: '100px' //主面板相对浏览器右侧距离
     //,minRight: '90px' //聊天面板最小化时相对浏览器右侧距离
-    ,initSkin: '3.jpg' //1-5 设置初始背景
+    ,initSkin: '3.jpg' //1-layui 设置初始背景
     //,skin: ['aaa.jpg'] //新增皮肤
     //,isfriend: false //是否开启好友
     //,isgroup: false //是否开启群组
@@ -243,7 +238,7 @@ layui.define(['index', 'layim'], function(exports){
             }
             layer.msg('好友申请已发送，请等待对方确认', {
               icon: 1
-              ,shade: 0.5
+              ,shade: 0.layui
             }, function(){
               layer.close(index);
             });
