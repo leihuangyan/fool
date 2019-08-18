@@ -11,7 +11,6 @@ layui.extend({
   ,admin = layui.admin
   ,tabsPage = admin.tabsPage
   ,view = layui.view
-  
   //打开标签页
   ,openTabsPage = function(url, text){
     //遍历页签选项卡
@@ -59,13 +58,15 @@ layui.extend({
     });
   }
   
-  ,APP_BODY = '#LAY_app_body', FILTER_TAB_TBAS = 'layadmin-layout-tabs'
-  ,$ = layui.$, $win = $(window);
-  
+  ,APP_BODY = '#LAY_app_body'
+  , FILTER_TAB_TBAS = 'layadmin-layout-tabs'  
+  ,$ = layui.$
+  , $win = $(window);
+
   //初始
   if(admin.screen() < 2) admin.sideFlexible();
   
-  //将模块根路径设置为 controller 目录
+  //将模块根路径设置为 modules 目录
   layui.config({
     base: setter.base + 'modules/'
   });
@@ -76,14 +77,12 @@ layui.extend({
     mods[item] = '{/}' + setter.base + 'lib/extend/' + item;
     layui.extend(mods);
   });
-  
+
+
   view().autoRender();
-  
   //加载公共模块
   layui.use('common');
 
   //对外输出
-  exports('index', {
-    openTabsPage: openTabsPage
-  });
+  exports('index', {openTabsPage: openTabsPage});
 });

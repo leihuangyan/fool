@@ -10,10 +10,13 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <packaging>pom</packaging>
+
+    <packaging>jar</packaging>
+
     <groupId>com.lhy</groupId>
     <artifactId>fool</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>fool</name>
     <description>Demo project for Spring Boot</description>
 
@@ -33,6 +36,7 @@
         <fastjson-version>1.2.57</fastjson-version>
         <velocity-version>2.0</velocity-version>
         <mail-version>1.4.7</mail-version>
+        <shiro-version>1.4.0</shiro-version>
     </properties>
 
 
@@ -60,11 +64,11 @@
         </dependency>
 
         <!-- shiro -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring-boot-starter</artifactId>
-            <!--<version>1.4.0</version>-->
-        </dependency>
+            <version>${shiro-version}</version>
+        </dependency>-->
 
         <!--boot test-->
         <dependency>
@@ -228,18 +232,5 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-
-        <!--<resources>-->
-            <!--<resource>-->
-                <!--&lt;!&ndash; 指定resources插件处理哪个目录下的资源文件 &ndash;&gt;-->
-                <!--<directory>src/main/resources</directory>-->
-                <!--&lt;!&ndash;注意此次必须要放在此目录下才能被访问到 &ndash;&gt;-->
-                <!--<targetPath>META-INF/resources</targetPath>-->
-                <!--<excludes>-->
-                    <!--<exclude>**/*.xml</exclude>-->
-                <!--</excludes>-->
-            <!--</resource>-->
-        <!--</resources>-->
-
     </build>
 </project>

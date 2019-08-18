@@ -12,21 +12,25 @@ layui.define('view', function(exports){
   
   ,$win = $(window), $body = $('body')
   ,container = $('#'+ setter.container)
-  
-  ,SHOW = 'layui-show', HIDE = 'layui-hide', THIS = 'layui-this', DISABLED = 'layui-disabled', TEMP = 'template'
-  ,APP_BODY = '#LAY_app_body', APP_FLEXIBLE = 'LAY_app_flexible'
+  ,SHOW = 'layui-show'
+  ,HIDE = 'layui-hide'
+  ,THIS = 'layui-this'
+  ,DISABLED = 'layui-disabled'
+  ,TEMP = 'template'
+  ,APP_BODY = '#LAY_app_body'
+  ,APP_FLEXIBLE = 'LAY_app_flexible'
   ,FILTER_TAB_TBAS = 'layadmin-layout-tabs'
-  ,APP_SPREAD_SM = 'layadmin-side-spread-sm', TABS_BODY = 'layadmin-tabsbody-item'
-  ,ICON_SHRINK = 'layui-icon-shrink-right', ICON_SPREAD = 'layui-icon-spread-left'
-  ,SIDE_SHRINK = 'layadmin-side-shrink', SIDE_MENU = 'LAY-views-side-menu'
-
+  ,APP_SPREAD_SM = 'layadmin-side-spread-sm'
+  ,TABS_BODY = 'layadmin-tabsbody-item'
+  ,ICON_SHRINK = 'layui-icon-shrink-right'
+  ,ICON_SPREAD = 'layui-icon-spread-left'
+  ,SIDE_SHRINK = 'layadmin-side-shrink'
+  ,SIDE_MENU = 'LAY-views-side-menu'
   //通用方法
   ,admin = {
     v: '1.0.0-beta9 std'
-    
     //数据的异步请求
     ,req: view.req
-    
     //发送验证码
     ,sendAuthCode: function(options){
       options = $.extend({

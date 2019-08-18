@@ -1,13 +1,11 @@
 package com.lhy;
 
-import cn.hutool.http.HttpUtil;
+import cn.hutool.extra.mail.MailUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashMap;
 
 /**
  * @name: Application
@@ -27,20 +25,19 @@ public class Application {
 
 
     public static void main(String[] args) {
-        //String user = "2468568750@qq.com";
-        //user = "984038622@qq.com";
-        //String subject = "恭喜你胖子中奖了";
-        //MailUtil.sendHtml(user,subject,subject);
+        String user = "15897476550@163.com";
+        String subject = "xxx";
+        MailUtil.sendHtml(user,subject,subject);
 
-        String url = "http://www.ilol.ylol3.top/index.php/index/lol.html";
-        HashMap<String, Object> paramMap = new HashMap<>();
-        paramMap.put("u", "1212121212");
-        paramMap.put("p", "8888888");
-        paramMap.put("bianhao", "852");
+        //String url = "http://www.ilol.ylol3.top/index.php/index/lol.html";
+        //HashMap<String, Object> paramMap = new HashMap<>();
+        //paramMap.put("u", "1212121212");
+        //paramMap.put("p", "8888888");
+        //paramMap.put("bianhao", "852");
 
-        final String post = HttpUtil.post(url, paramMap)
+        //final String post = HttpUtil.post(url, paramMap)
                 ;
-        log.info("POST:{}",post);
+        //log.info("POST:{}",post);
         //
         //Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
         //Accept-Encoding: gzip, deflate

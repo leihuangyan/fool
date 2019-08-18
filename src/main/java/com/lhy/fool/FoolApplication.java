@@ -26,6 +26,4 @@ public class FoolApplication  extends SpringBootServletInitializer {
     //    return builder.sources(FoolApplication.class);
     //}
 
-
-
 }

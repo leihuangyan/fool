@@ -9,15 +9,13 @@ layui.define(['laytpl', 'layer'], function(exports){
   ,setter = layui.setter
   ,device = layui.device()
   ,hint = layui.hint()
-  
   //对外接口
   ,view = function(id){
     return new Class(id);
   }
-  
-  ,SHOW = 'layui-show', LAY_BODY = 'LAY_app_body'
-  
-  //构造器
+  ,SHOW = 'layui-show'
+  , LAY_BODY = 'LAY_app_body'
+    //构造器
   ,Class = function(id){
     this.id = id;
     this.container = $('#'+(id || LAY_BODY));
