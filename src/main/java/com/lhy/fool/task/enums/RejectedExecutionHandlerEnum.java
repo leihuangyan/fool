@@ -32,9 +32,13 @@ public enum RejectedExecutionHandlerEnum {
      */
     CALLER_RUNS_POLICY(new ThreadPoolExecutor.CallerRunsPolicy());
 
-    private  RejectedExecutionHandler handler;
+    public   RejectedExecutionHandler handler;
 
     RejectedExecutionHandlerEnum(RejectedExecutionHandler handler) {
         this.handler = handler;
+    }
+
+    public RejectedExecutionHandler getHandler() {
+        return handler;
     }
 }

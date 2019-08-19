@@ -1,4 +1,4 @@
-package com.lhy.fool.task.constant;
+package com.lhy.fool.task.config.constant;
 
 import java.io.Serializable;
 
@@ -18,6 +18,7 @@ public class WorkQueueConstant  implements Serializable {
      * 基于数组的先进先出队列，此队列创建时必须指定大小；
      */
     public final  static String ARRAY_BLOCKING_QUEUE ="ARRAY_BLOCKING_QUEUE";
+
 
     public final  static String PRIORITY_BLOCKING_QUEUE ="PRIORITY_BLOCKING_QUEUE";
 

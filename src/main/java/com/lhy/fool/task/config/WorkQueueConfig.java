@@ -1,6 +1,6 @@
 package com.lhy.fool.task.config;
 
-import com.lhy.fool.task.constant.WorkQueueConstant;
+import com.lhy.fool.task.config.constant.WorkQueueConstant;
 import lombok.Data;
 
 import java.util.Collection;
@@ -12,33 +12,30 @@ import java.util.concurrent.*;
  * @classPath: com.lhy.fool.task.config.WorkQueueConfig
  * @date: 2019-08-18 22:37
  * @Version: 1.0
- * @description: TODO
+ * @description:  工作队列配置
  */
 @Data
 public class WorkQueueConfig<E> {
 
-
     /**
      * 改变状态需要重新设值
      */
-    private String constant = WorkQueueConstant.LINKED_BLOCKING_QUEUE;
+    private static String constant = WorkQueueConstant.LINKED_BLOCKING_QUEUE;
 
-    private Integer capacity = 10;
+    public static Integer capacity = 10;
 
     private Boolean fair;
 
     private Collection<? extends E> coll;
 
 
-    public  BlockingQueue<E> build(){
+    public static BlockingQueue build(){
         return build(capacity);
     }
 
-    public  BlockingQueue<E> build(Integer capacity){
-
+    public static  BlockingQueue build(Integer capacity){
         if(constant.equals(WorkQueueConstant.ARRAY_BLOCKING_QUEUE)){
             return new ArrayBlockingQueue<>(capacity);
-
         }else if (constant.equals(WorkQueueConstant.PRIORITY_BLOCKING_QUEUE)){
             return new PriorityBlockingQueue<>();
 
