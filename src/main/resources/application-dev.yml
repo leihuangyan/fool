@@ -4,9 +4,9 @@ spring:
       type: com.alibaba.druid.pool.DruidDataSource
       #druid相关配置
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://47.101.162.124:3306/makeforyou?useUnicode=true&characterEncoding=UTF-8
-      username: lhy
-      password: 1223
+      url:
+      username:
+      password:
       #  连接池的配置信息
       #配置初始化大小/最小/最大
       initial-size: 1
@@ -44,10 +44,9 @@ swagger:
 ftp:
   host: 47.101.162.124
   port: 21
-  ftpPort: 80
-  username: lhy
-  password: 1223
-  rootPath: "/hxx/wxxw"
+  ftpPort:
+  username:
+  rootPath:
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
