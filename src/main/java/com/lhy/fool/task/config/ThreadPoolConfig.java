@@ -125,4 +125,9 @@ public class ThreadPoolConfig implements Serializable {
         this.handler = handler;
         this.allowCoreThreadTimeOut = allowCoreThreadTimeOut;
     }
+
+    public ThreadPoolConfig setMaximumPoolSize(int maximumPoolSize) {
+        this.maximumPoolSize = maximumPoolSize;
+        return this;
+    }
 }
