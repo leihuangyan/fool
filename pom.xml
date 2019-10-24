@@ -31,7 +31,7 @@
         <mp-version>3.1.2</mp-version>
         <mp-generator-version>3.1.0</mp-generator-version>
         <druid-version>1.1.10</druid-version>
-        <hutool-version>4.6.0</hutool-version>
+        <hutool-version>4.6.6</hutool-version>
         <swagger-version>2.6.1</swagger-version>
         <fastjson-version>1.2.57</fastjson-version>
         <velocity-version>2.0</velocity-version>
@@ -76,6 +76,25 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
+
+        <!--Security依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- JWT依赖 -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+            <version>1.0.9.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+
         <!-- shiro -->
 <!--        <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -88,6 +107,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!--  ==========================>spring boot devtools 热部署<========================== -->
+        <!--scope：provided 不参与打包-->
+        <!--<optional>true</optional>：不被子模块下的模块依赖 不参与打包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
 
 
@@ -227,7 +256,7 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>4.1.0</version>
+            <version>4.0.1</version>
         </dependency>
 
         <dependency>

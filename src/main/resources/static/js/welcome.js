@@ -11,7 +11,7 @@ layui.config({
     form.on('submit(LAY-user-login-submit)', function(obj){
         //请求登入接口
         admin.req({
-            url: '/sys/admin/user/login'
+            url: '/login'
             ,data: obj.field
             ,type:'post'
             ,dataType:'json'
