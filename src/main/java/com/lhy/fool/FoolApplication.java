@@ -19,9 +19,4 @@ public class FoolApplication  extends SpringBootServletInitializer {
         SpringApplication.run(FoolApplication.class, args);
     }
 
-    //@Override
-    //protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-    //    return builder.sources(FoolApplication.class);
-    //}
-
 }
