@@ -173,12 +173,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!--  =======================【oracle 驱动 】=======================   -->
-<!--        <dependency>-->
-<!--            <groupId>oracle</groupId>-->
-<!--            <artifactId>oracle6</artifactId>-->
-<!--            <version>1.0.0</version>-->
-<!--        </dependency>-->
 
         <!--  =======================【ojdbc14 驱动 】=======================   -->
         <dependency>
