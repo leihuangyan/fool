@@ -1,6 +1,6 @@
 package com.cz.task.restul.domain;
 
-import com.cz.task.restul.domain.base.BaseRequestParam;
+import com.cz.task.restul.domain.base.BaseSignObj;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlElement;
  */
 @Data
 @XmlAccessorType(XmlAccessType.FIELD)
-public class UploadFileRequestParam extends BaseRequestParam {
+public class UploadFileRequestParam   extends BaseSignObj {
 
     /**
      *用户名

@@ -30,11 +30,21 @@ public interface ISignService {
     String analysisParam(BaseSignObj signObj);
 
     /**
-     * 排序
-     * @param map map
+     * 处理需要签名参数
+     * @param param param
      * @return str
      */
-    String concatSignString(Map<String, String> map);
+    String processSignParam(Map<String, String> param);
+
+
+    /**
+     * 首字母大写
+     * @param str 属性名
+     * @return
+     */
+    String initialCapital(String str);
+
+
 
     /**
      * 请求签名

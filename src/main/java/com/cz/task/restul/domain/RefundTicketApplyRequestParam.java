@@ -1,6 +1,7 @@
 package com.cz.task.restul.domain;
 
-import com.cz.task.restul.domain.base.BaseRequestParam;
+import com.cz.task.restul.annotaction.IsParam;
+import com.cz.task.restul.domain.base.BaseSignObj;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 @Data
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RefundTicketApplyRequestParam extends BaseRequestParam {
+public class RefundTicketApplyRequestParam extends BaseSignObj {
 
     /**
      *分销商用户名
@@ -35,6 +36,7 @@ public class RefundTicketApplyRequestParam extends BaseRequestParam {
     /**
      *废票乘机人信息
      */
+    @IsParam("Passenger=")
     @XmlElementWrapper(name = "PassengerList")
     @XmlElement(name = "Passenger")
     private List<Passenger> passengerList;
@@ -56,6 +58,7 @@ public class RefundTicketApplyRequestParam extends BaseRequestParam {
     /**
      *退票航班组
      */
+    @IsParam("TRFlightList=")
     @XmlElementWrapper(name = "TRFlightList")
     @XmlElement(name = "TRFlightList")
     private List<TRFlightList> trFlightList;

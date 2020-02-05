@@ -1,5 +1,6 @@
 package com.cz.task.restul.domain;
 
+import com.cz.task.restul.domain.base.BaseSignObj;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,7 +18,7 @@ import java.io.Serializable;
  */
 @Data
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TRFlightList implements Serializable {
+public class TRFlightList extends BaseSignObj implements Serializable {
 
 
     /**

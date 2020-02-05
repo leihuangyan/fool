@@ -2,7 +2,6 @@ package com.cz.task.restul;
 
 import com.cz.task.restul.constant.RefundConstant;
 import com.cz.task.restul.domain.*;
-import com.cz.task.restul.domain.base.BaseRequestParam;
 import com.cz.task.restul.enums.FileTypeEnum;
 import com.cz.task.restul.enums.PassengerTypeEnum;
 import com.cz.task.restul.service.ISignService;
@@ -41,9 +40,13 @@ import java.util.List;
 public class HttpUtil {
 
 
+    /**
+     * 测试main
+     * @param args args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
 
-        List<BaseRequestParam> params;
         String url;
 
         //签名Service
@@ -58,23 +61,26 @@ public class HttpUtil {
         orderRefund.setVersion(RefundConstant.VERSION);
         orderRefund.setAction("哈哈");
 
-
-                //附件参数 url
-//      params = getFileParams();
-//      url = RefundConstant.FILE_UPLOAD_REFUND;
+        //附件参数 url
+//        List<UploadFileRequestParam> fileParams = getFileParams();
+//        url = RefundConstant.FILE_UPLOAD_REFUND;
+//        orderRefund.setFileParam(fileParams);
 
         //退票参数 url
         url = RefundConstant.ORDER_REFUND;
-        params = getRefundParams();
-
+        List<RefundTicketApplyRequestParam> params = getRefundParams();
         orderRefund.setParam(params);
-        log.info("orderRefund toString{}",orderRefund.toString());
-        orderRefund.setSign(signService.requestSign(orderRefund));
-        log.info("签名长度：{}",orderRefund.getSign().length());
+
+        String sign = signService.requestSign(orderRefund);
+        log.error("最终sign:{} 长度:{}",sign,sign.length());
+        orderRefund.setSign(sign);
+
         String xmlStr = XMLUtil.convertToXml(orderRefund);
         log.info("换行输出XML str--->\n{}",xmlStr);
 
         String result = HttpUtil.postXML(url, xmlStr);
+
+        assert result != null;
 
         String decode = URLDecoder.decode(result, Consts.UTF_8.name());
 
@@ -87,7 +93,7 @@ public class HttpUtil {
     }
 
 
-    private static List<BaseRequestParam> getRefundParams() {
+    private static List<RefundTicketApplyRequestParam> getRefundParams() {
         RefundTicketApplyRequestParam param = new RefundTicketApplyRequestParam();
 
         param.setConsumer("111");
@@ -102,8 +108,8 @@ public class HttpUtil {
 
 
         TRFlightList trFlightList1 = new TRFlightList();
-
         BeanUtils.copyProperties(trFlightList,trFlightList1);
+        trFlightList1.setFlightNo("天堂2号-002");
 
         List<TRFlightList> trFlightLists = Arrays.asList(trFlightList,trFlightList1);
         param.setTrFlightList(trFlightLists);
@@ -111,12 +117,14 @@ public class HttpUtil {
 
         Passenger passenger = new Passenger();
         passenger.setIdCard("431127199601124737");
-        passenger.setName("王尼玛");
+        passenger.setName("王尼玛1");
+        passenger.setTicketNo("NO-zxxxxx");
         passenger.setPassengerType(PassengerTypeEnum.ZZ.name());
         passenger.setLoseInvoice(new BigDecimal(1000));
 
         Passenger passenger1 = new Passenger();
         BeanUtils.copyProperties(passenger,passenger1);
+        passenger1.setName("王尼玛2");
 
         List<Passenger> passengers = Arrays.asList(passenger,passenger1);
         param.setPassengerList(passengers);
@@ -126,7 +134,7 @@ public class HttpUtil {
     }
 
 
-    private static List<BaseRequestParam> getFileParams() throws Exception {
+    private static List<UploadFileRequestParam> getFileParams() throws Exception {
         UploadFileRequestParam param = new UploadFileRequestParam();
 
         File file = new File("/Users/lhy/IdeaProjects/fool/test.jpg");

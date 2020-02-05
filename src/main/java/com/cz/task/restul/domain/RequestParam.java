@@ -1,7 +1,7 @@
 package com.cz.task.restul.domain;
 
 import com.cz.task.restul.annotaction.IgnoreSign;
-import com.cz.task.restul.domain.base.BaseRequestParam;
+import com.cz.task.restul.annotaction.IsParam;
 import com.cz.task.restul.domain.base.BaseSignObj;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,7 +30,8 @@ import java.util.List;
         "signType",
         "sign",
         "version",
-        "param"
+        "param",
+        "fileParam"
 })
 public class RequestParam extends BaseSignObj implements Serializable {
 
@@ -75,7 +76,16 @@ public class RequestParam extends BaseSignObj implements Serializable {
      * 业务参数
      */
     @IgnoreSign
+    @IsParam("Param=")
     @XmlElement(name = "Param")
-    private List<BaseRequestParam> param;
+    private List<RefundTicketApplyRequestParam> param;
+
+    /**
+     * 业务参数
+     */
+    @IgnoreSign
+    @IsParam("Param=")
+    @XmlElement(name = "Param")
+    private List<UploadFileRequestParam> fileParam;
 
 }

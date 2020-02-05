@@ -1,5 +1,6 @@
 package com.cz.task.restul.domain;
 
+import com.cz.task.restul.domain.base.BaseSignObj;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,7 +20,7 @@ import java.math.BigDecimal;
 @Data
 @XmlRootElement(name = "Passenger")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Passenger {
+public class Passenger extends BaseSignObj {
 
     /**
      * 乘客名称
